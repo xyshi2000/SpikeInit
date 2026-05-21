@@ -46,11 +46,11 @@ The core implementation of **SpikeInit** is located in `models/submodules/initia
 
 The function `_steady_state_equations` implements the system of nonlinear equations from **Theorem 4.1** in the paper. These equations are solved by `_find_steady_state`, following **Algorithm 1**.
 
-The weight initialization parameter $\sigma^*$ is computed in `calculate_parameters`. This function first performs a binary search for $\sigma^*$ using `_find_sigma`, following **Algorithm 2**. It then computes $\sigma_w^{(1)}$ for the direct coding layer using `_find_static_sigma`.
+The weight initialization parameter $\sigma^\ast$ is computed in `calculate_parameters`. This function first performs a binary search for $\sigma^\ast$ using `_find_sigma`, following **Algorithm 2**. It then computes $\sigma_w^{(1)}$ for the direct coding layer using `_find_static_sigma`.
 
-The initial shape parameter of the surrogate gradient is computed in `calculate_alpha`. This function provides a general numerical approach for estimating the expected squared derivative of the surrogate function, denoted by $\mathcal{M}_2$, via numerical integration. To support other surrogate functions, you can modify the corresponding `integrand`. The function then solves the nonlinear equation from **Theorem 5.1** to obtain $\alpha^*$.
+The initial shape parameter of the surrogate gradient is computed in `calculate_alpha`. This function provides a general numerical approach for estimating the expected squared derivative of the surrogate function, denoted by $\mathcal{M}_2$, via numerical integration. To support other surrogate functions, you can modify the corresponding `integrand`. The function then solves the nonlinear equation from **Theorem 5.1** to obtain $\alpha^\ast$.
 
-The simulation-based weight initialization is implemented in `calculate_parameters_sim`. It generates random input currents and simulates the membrane potential dynamics using `_simulate`. The function `_find_sigma_sim` then performs a binary search to identify $\sigma^*$, following **Algorithm 3**.
+The simulation-based weight initialization is implemented in `calculate_parameters_sim`. It generates random input currents and simulates the membrane potential dynamics using `_simulate`. The function `_find_sigma_sim` then performs a binary search to identify $\sigma^\ast$, following **Algorithm 3**.
 
 The simulation-based surrogate-gradient initialization is implemented in `calculate_alpha_sim`. It estimates $\mathcal{M}_2$ using `_compute_M2_numerical`, based on membrane potential samples collected from the simulations.
 
